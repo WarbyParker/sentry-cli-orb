@@ -78,7 +78,7 @@ set-commits:
         command: |
           VERSION=$(cat sentry-release-version.txt)
           COMMIT_ID=${CIRCLE_PROJECT_REPONAME}@${CIRCLE_SHA1}
-          sentry-cli releases --org "${<< parameters.org >>}" set-commits "${VERSION}" --commit "${COMMIT_ID}"
+          sentry-cli releases set-commits "${VERSION}" --commit "${COMMIT_ID}"
 create-deployment:
   description: >
     Create a new Sentry release deployment. Execute for each deployment of a release. If the
