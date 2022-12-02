@@ -12,8 +12,8 @@ workflows:
           requires:
             - orb-tools/lint
       - orb-tools/publish-dev:
-          context: org-global
-          orb-name: picturepipe/sentry-cli
+          context: wp-sre-circleci
+          orb-name: warbyparker/sentry-cli
           requires:
             - orb-tools/pack
           filters:
