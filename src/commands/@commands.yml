@@ -49,7 +49,7 @@ create-release:
     - run:
         name: Create a new Sentry release
         command: |
-          VERSION=$(cat sentry-release-version.txt)
+          VERSION=${CIRCLE_TAG}
           sentry-cli releases --org "${<< parameters.org >>}" new \
             --project "${<< parameters.project >>}" "${VERSION}"
 finalize-release:
@@ -63,7 +63,7 @@ finalize-release:
     - run:
         name: Finalize a Sentry release
         command: |
-          VERSION=$(cat sentry-release-version.txt)
+          VERSION=${CIRCLE_TAG}
           sentry-cli releases --org "${<< parameters.org >>}" finalize "${VERSION}"
 set-commits:
   description: >
@@ -76,7 +76,7 @@ set-commits:
     - run:
         name: Set commits of a Sentry release
         command: |
-          VERSION=$(cat sentry-release-version.txt)
+          VERSION=${CIRCLE_TAG}
           COMMIT_ID=${CIRCLE_PROJECT_REPONAME}@${CIRCLE_SHA1}
           sentry-cli releases set-commits "${VERSION}" --commit "${COMMIT_ID}"
 create-deployment:
@@ -95,6 +95,6 @@ create-deployment:
     - run:
         name: Create a new Sentry release deployment
         command: |
-          VERSION=$(cat sentry-release-version.txt)
+          VERSION=${CIRCLE_TAG}
           sentry-cli releases --org "${<< parameters.org >>}" deploys "${VERSION}" new \
             --env "<< parameters.env >>"
