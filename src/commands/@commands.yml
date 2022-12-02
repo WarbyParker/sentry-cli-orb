@@ -77,7 +77,7 @@ set-commits:
         name: Set commits of a Sentry release
         command: |
           VERSION=$(cat sentry-release-version.txt)
-          sentry-cli releases --org "${<< parameters.org >>}" set-commits --auto "${VERSION}"
+          sentry-cli releases --org "${<< parameters.org >>}" set-commits "${VERSION}" --commit
 create-deployment:
   description: >
     Create a new Sentry release deployment. Execute for each deployment of a release. If the
