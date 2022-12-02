@@ -78,6 +78,7 @@ set-commits:
         command: |
           VERSION=${CIRCLE_TAG}
           COMMIT_ID=${CIRCLE_PROJECT_REPONAME}@${CIRCLE_SHA1}
+          sentry-cli repos list
           sentry-cli releases set-commits "${VERSION}" --commit "${COMMIT_ID}"
 create-deployment:
   description: >
